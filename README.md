@@ -1,4 +1,4 @@
-<h1 align="center">Weather App
+<h1 align="center">Music Player App
 </h1>
 
 <h2 align="center"> 🚧 O aplicativo ainda está em desenvolvimento 🚧 </h2>
