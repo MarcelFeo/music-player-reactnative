@@ -16,7 +16,7 @@ export default function AppNavigator() {
   return (
     <Tab.Navigator>
         <Tab.Screen 
-            name="AudioList" 
+            name="Músicas" 
             component={AudioList} 
             options={{
                 tabBarIcon: ({color, size}) => <Ionicons name="headset-sharp" size={size} color={color} />
