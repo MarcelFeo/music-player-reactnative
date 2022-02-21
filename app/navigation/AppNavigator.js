@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // components
 import AudioList from '../screens/AudioList';
 import Player from '../screens/Player';
-import Playlist from '../screens/Playlist';
+import PlayList from '../screens/PlayList';
 
 // icons
 import { Ionicons } from '@expo/vector-icons';
@@ -14,26 +14,30 @@ const Tab = createBottomTabNavigator();
 
 export default function AppNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+        screenOptions={{
+            tabBarActiveTintColor: '#ff304f',
+        }}
+    >
         <Tab.Screen 
             name="Músicas" 
             component={AudioList} 
             options={{
-                tabBarIcon: ({color, size}) => <Ionicons name="headset-sharp" size={size} color={color} />
+                tabBarIcon: ({size, focused}) => <Ionicons name="headset-sharp" size={size} color={focused ? '#ff304f' : '#222'} />
             }} 
         />
         <Tab.Screen 
             name="Player" 
             component={Player} 
             options={{
-                tabBarIcon: ({color, size}) => <Ionicons name="play" size={size} color={color} />
+                tabBarIcon: ({size, focused}) => <Ionicons name="play" size={size} color={focused ? '#ff304f' : '#222'} />
             }} 
         />
         <Tab.Screen 
-            name="Playlist" 
-            component={Playlist}
+            name= "Playlist"
+            component={PlayList}
             options={{
-                tabBarIcon: ({color, size}) => <MaterialIcons name="my-library-music" size={size} color={color} />
+                tabBarIcon: ({size, focused}) => <MaterialIcons name="my-library-music" size={size} color={focused ? '#ff304f' : '#222'} />
             }} 
         />
     </Tab.Navigator>
