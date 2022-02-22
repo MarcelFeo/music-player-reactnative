@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 
 import { Entypo } from '@expo/vector-icons';
@@ -27,24 +27,28 @@ const convertTime = minutes => {
     }
 };
 
-export default function AudioListItem({title, duration, onOptionPress}) {
+export default function AudioListItem({title, duration, onOptionPress, onAudioPress}) {
   return (
     <>  
         <View style={styles.container}>
-            <View style={styles.leftContainer}>
-                <View style={styles.thumbnail}>
-                    <Text style={styles.thumbnailText}>🎵</Text>
+            <TouchableWithoutFeedback
+                onPress={onAudioPress}
+            >
+                <View style={styles.leftContainer}>
+                    <View style={styles.thumbnail}>
+                        <Text style={styles.thumbnailText}>🎵</Text>
+                    </View>
+                    <View style={styles.titleContainer}>
+                        <Text 
+                            numberOfLines={1} 
+                            style={styles.title}
+                        >
+                            {title}
+                        </Text>
+                        <Text style={styles.time}>{convertTime(duration)}</Text>
+                    </View>
                 </View>
-                <View style={styles.titleContainer}>
-                    <Text 
-                        numberOfLines={1} 
-                        style={styles.title}
-                    >
-                        {title}
-                    </Text>
-                    <Text style={styles.time}>{convertTime(duration)}</Text>
-                </View>
-            </View>
+            </TouchableWithoutFeedback>
             <TouchableOpacity 
                 style={styles.rightContainer}
                 onPress={onOptionPress} 

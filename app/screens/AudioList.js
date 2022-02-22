@@ -5,6 +5,9 @@ import {RecyclerListView, LayoutProvider} from 'recyclerlistview';
 import AudioListItem from '../components/AudioListItem';
 import OptionModal from '../components/OptionModal';
 
+import { Audio } from 'expo-av';
+import { play, pause, resume } from '../misc/audioController';
+
 export default class AudioList extends Component {
   static contextType = AudioContext;
 
@@ -30,6 +33,34 @@ export default class AudioList extends Component {
     
   });
 
+  handleAudioPress = async audio => {
+    const {soundObj, playbackObj, currentAudio, updateState} = this.context;
+
+    // playing
+    if(soundObj === null) {
+      const playbackObj = new Audio.Sound();
+      const status = await play(playbackObj, audio.uri)
+
+      return updateState(this.context, {currentAudio: audio,
+        playbackObj: playbackObj, 
+        soundObj: status,})
+    }
+
+    // pause 
+    if(soundObj.isLoaded && soundObj.isPlaying) {
+      const status = await pause(playbackObj);
+
+      return updateState(this.context, {soundObj: status});
+    }
+
+    // resume 
+    if(soundObj.isLoaded && !soundObj.isPlaying && currentAudio.id === audio.id) {
+      const status = await resume(playbackObj);
+
+      return updateState(this.context, {soundObj: status});
+    }
+  }
+
   rowRenderer = (type, item) => {
     return (
       <AudioListItem 
@@ -39,6 +70,7 @@ export default class AudioList extends Component {
           this.currentItem = item;
           this.setState({ ...this.state, optionModalVisible: true });
         }}
+        onAudioPress={() => this.handleAudioPress(item)}
       />
     )
   }
