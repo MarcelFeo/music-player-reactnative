@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 
 import { Entypo } from '@expo/vector-icons';
@@ -27,7 +27,7 @@ const convertTime = minutes => {
     }
 };
 
-export default function AudioListItem({title, duration}) {
+export default function AudioListItem({title, duration, onOptionPress}) {
   return (
     <>  
         <View style={styles.container}>
@@ -45,9 +45,16 @@ export default function AudioListItem({title, duration}) {
                     <Text style={styles.time}>{convertTime(duration)}</Text>
                 </View>
             </View>
-            <View style={styles.rightContainer}>
-                <Entypo name="dots-three-vertical" size={24} color={color.FONT_MEDIUM} />
-            </View>
+            <TouchableOpacity 
+                style={styles.rightContainer}
+                onPress={onOptionPress} 
+            >
+                <Entypo 
+                    name="dots-three-vertical" 
+                    size={24} 
+                    color={color.FONT_MEDIUM}
+                />
+            </TouchableOpacity>
         </View>
         <View style={styles.separator}/>
     </>

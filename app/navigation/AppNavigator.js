@@ -20,7 +20,7 @@ export default function AppNavigator() {
         }}
     >
         <Tab.Screen 
-            name="Músicas" 
+            name="Músicas"
             component={AudioList} 
             options={{
                 tabBarIcon: ({size, focused}) => <Ionicons name="headset-sharp" size={size} color={focused ? '#ff304f' : '#222'} />

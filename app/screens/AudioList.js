@@ -3,9 +3,19 @@ import React, { Component } from 'react'
 import { AudioContext } from '../context/AudioProvider'
 import {RecyclerListView, LayoutProvider} from 'recyclerlistview';
 import AudioListItem from '../components/AudioListItem';
+import OptionModal from '../components/OptionModal';
 
 export default class AudioList extends Component {
   static contextType = AudioContext;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      optionModalVisible: false,
+    };
+
+    this.currentItem = {};
+  }
 
   layoutProvider = new LayoutProvider( i => 'audio', (type, dim) => {
     switch(type) {
@@ -21,11 +31,16 @@ export default class AudioList extends Component {
   });
 
   rowRenderer = (type, item) => {
-    console.log(item);
-    return <AudioListItem 
+    return (
+      <AudioListItem 
         title={item.filename} 
         duration={item.duration}
+        onOptionPress={() => {
+          this.currentItem = item;
+          this.setState({ ...this.state, optionModalVisible: true });
+        }}
       />
+    )
   }
 
   render() {
@@ -38,6 +53,13 @@ export default class AudioList extends Component {
                 dataProvider={dataProvider} 
                 layoutProvider={this.layoutProvider}
                 rowRenderer={this.rowRenderer}
+              />
+              <OptionModal 
+                visible={this.state.optionModalVisible}
+                onClose={() => this.setState({ ...this.state, optionModalVisible: false })}
+                currentItem={this.currentItem}
+                onPlaylistPress={() => console.log('playlist')}
+                onAddPress={() => console.log('add')}
               />
             </View>
           )
