@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
-
-import { Entypo } from '@expo/vector-icons';
 import color from '../misc/color';
+
+// icons 
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const convertTime = minutes => {
     if (minutes) {
@@ -27,7 +29,19 @@ const convertTime = minutes => {
     }
 };
 
-export default function AudioListItem({title, duration, onOptionPress, onAudioPress}) {
+const renderPlayPauseIcon = isPlaying => {
+    if(isPlaying) return <AntDesign name="pause" size={30} color="#ff304f" />
+    return <Entypo name="controller-play" size={30} color="#ff304f" />
+}
+
+export default function AudioListItem({ 
+    title, 
+    duration, 
+    onOptionPress, 
+    onAudioPress, 
+    isPlaying,
+    activeListItem
+}) {
   return (
     <>  
         <View style={styles.container}>
@@ -36,7 +50,9 @@ export default function AudioListItem({title, duration, onOptionPress, onAudioPr
             >
                 <View style={styles.leftContainer}>
                     <View style={styles.thumbnail}>
-                        <Text style={styles.thumbnailText}>🎵</Text>
+                        <Text style={styles.thumbnailText}>
+                            {activeListItem ? renderPlayPauseIcon(isPlaying) : <Text>♫</Text>}
+                        </Text>
                     </View>
                     <View style={styles.titleContainer}>
                         <Text 
@@ -87,7 +103,7 @@ const styles = StyleSheet.create({
     },
     thumbnail: {
         height: 50,
-        backgroundColor: color.FONT_LIGHT,
+        backgroundColor: color.MODAL_BG,
         flexBasis: 50,
         justifyContent: 'center',
         alignItems: 'center',
@@ -97,6 +113,11 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: 'bold',
         color: color.FONT,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginTop: 8.5,
     },
     titleContainer: {
         width: width - 180,

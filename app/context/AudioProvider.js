@@ -15,6 +15,8 @@ export class AudioProvider extends Component {
         playbackObj: null,
         soundObj: null,
         currentAudio: {},
+        isPlaying: false,
+        currentAudioIndex: null,
       }
   }
 
@@ -51,14 +53,6 @@ export class AudioProvider extends Component {
   }
 
   getPermissions = async () => {
-    /*
-    {
-        "canAskAgain": true,
-        "expires": "never",
-        "granted": false,
-        "status": "undetermined",
-    }
-    */
     const permission = await MediaLibrary.getPermissionsAsync()
     if(permission.granted) {
       this.getAudioFiles();
@@ -93,7 +87,7 @@ export class AudioProvider extends Component {
   }
 
   render() {
-    const {audioFiles, dataProvider, permissionError, playbackObj, soundObj, currentAudio} = this.state;
+    const {audioFiles, dataProvider, permissionError, playbackObj, soundObj, currentAudio, isPlaying, currentAudioIndex} = this.state;
 
     if(permissionError) return <View
       style={{
@@ -117,6 +111,8 @@ export class AudioProvider extends Component {
         soundObj, 
         currentAudio,
         updateState: this.updateState,
+        isPlaying,
+        currentAudioIndex,
       }}>
         {this.props.children}
       </AudioContext.Provider>
