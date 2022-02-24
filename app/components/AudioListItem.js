@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
         height: 50,
         backgroundColor: color.MODAL_BG,
         flexBasis: 50,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 25,
@@ -113,11 +114,6 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: 'bold',
         color: color.FONT,
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignSelf: 'center',
-        marginTop: 8.5,
     },
     titleContainer: {
         width: width - 180,
@@ -138,5 +134,5 @@ const styles = StyleSheet.create({
     time: {
         fontSize: 12,
         color: color.FONT_LIGHT,
-    }
+    },
 })

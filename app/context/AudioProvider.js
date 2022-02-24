@@ -17,6 +17,8 @@ export class AudioProvider extends Component {
         currentAudio: {},
         isPlaying: false,
         currentAudioIndex: null,
+        playbackPosition: null,
+        playbackDuration: null,
       }
   }
 
@@ -87,7 +89,18 @@ export class AudioProvider extends Component {
   }
 
   render() {
-    const {audioFiles, dataProvider, permissionError, playbackObj, soundObj, currentAudio, isPlaying, currentAudioIndex} = this.state;
+    const {
+      audioFiles, 
+      dataProvider, 
+      permissionError, 
+      playbackObj, 
+      soundObj, 
+      currentAudio, 
+      isPlaying, 
+      currentAudioIndex,
+      playbackPosition,
+      playbackDuration,
+    } = this.state;
 
     if(permissionError) return <View
       style={{
@@ -101,7 +114,7 @@ export class AudioProvider extends Component {
           color: 'red',
           textAlign: 'center',
         }}
-      >Você precia aceitar a permissão</Text>
+      >Você precisa aceitar a permissão</Text>
     </View>
     return (
       <AudioContext.Provider value={{ 
@@ -113,6 +126,8 @@ export class AudioProvider extends Component {
         updateState: this.updateState,
         isPlaying,
         currentAudioIndex,
+        playbackPosition,
+        playbackDuration,
       }}>
         {this.props.children}
       </AudioContext.Provider>

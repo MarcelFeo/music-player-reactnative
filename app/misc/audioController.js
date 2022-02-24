@@ -6,7 +6,7 @@ export const play = async (playbackObj, uri) => {
             { shouldPlay: true }
         ); 
     } catch (error) {
-        console.log('error play => ' + error.message)
+        console.log('error play => ', error.message)
     }
 }
 
@@ -15,7 +15,7 @@ export const pause = async (playbackObj) => {
     try {
         return await playbackObj.setStatusAsync({ shouldPlay: false }); 
     } catch (error) {
-        console.log('error pause => ' + error.message)
+        console.log('error pause => ', error.message)
     }
 }
 
@@ -24,7 +24,7 @@ export const resume = async (playbackObj) => {
     try {
         return await playbackObj.playAsync() 
     } catch (error) {
-        console.log('error resume => ' + error.message)
+        console.log('error resume => ', error.message)
     }
 }
 
@@ -35,6 +35,6 @@ export const playNext = async (playbackObj, uri) => {
         await playbackObj.unloadAsync();
         return await play(playbackObj, uri);
     } catch (error) {
-        console.log('error another music => ' + error.message)
+        console.log('error another music => ', error.message)
     }
 }
