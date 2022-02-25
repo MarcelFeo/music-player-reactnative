@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react';
 import Slider from '@react-native-community/slider';
 import color from '../misc/color';
 
@@ -17,7 +17,13 @@ export default function Player() {
       return playbackPosition / playbackDuration;
     }
     return 0;
-  }
+  };
+
+  useEffect(() => {
+    context.loadPreviousAudio()
+  }, [])
+
+  if(!context.currentAudio) return null
 
   return (
     <View style={styles.container}>
