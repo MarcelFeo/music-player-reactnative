@@ -1,11 +1,11 @@
 <h1 align="center">Music Player App
 </h1>
 
-<h2 align="center"> 🚧 O aplicativo ainda está em desenvolvimento 🚧 </h2>
-
 ## 💻 Sobre o projeto
 
 O projeto consiste em Musica Player desenvolvido em React Native.<br>
+APK do aplicativo 👉 https://expo.dev/artifacts/2d84c4b9-1f48-446c-b5d7-b30db47a81ea
+
 
 ## 🛠 Tecnologias
 
