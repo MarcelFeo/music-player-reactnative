@@ -3,7 +3,7 @@
 
 ## 💻 Sobre o projeto
 
-O projeto consiste em Musica Player desenvolvido em React Native.<br>
+O projeto consiste em um Musica Player desenvolvido em React Native.<br>
 APK do aplicativo 👉 https://expo.dev/artifacts/2d84c4b9-1f48-446c-b5d7-b30db47a81ea
 
 
